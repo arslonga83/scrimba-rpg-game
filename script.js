@@ -18,11 +18,10 @@ const monster = {
 
 function renderCharacter(data) {
    const { id, name, avatar, health, dice, diceCount } = data;
-   let diceHtml = '';
-
-   for (let i = 0; i < diceCount; i++) {
-      diceHtml += `<div class="dice">${dice[i]}</div>`
-   }
+  
+   const diceHtml = dice.map((die) => {
+      return `<div class="dice">${die}</div>`
+   }).join('')
 
    document.getElementById(id).innerHTML += `
       <div class="character-card">
