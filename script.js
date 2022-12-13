@@ -1,9 +1,7 @@
 function getDiceRollArray(diceCount) {
-   let diceRollArray = [];
-   for (let i = 0; i < diceCount; i++) {
-      diceRollArray.push(Math.floor(Math.random() * 6) + 1)
-   }
-   return diceRollArray;
+   return new Array(diceCount).fill(0).map(() => {
+      return Math.floor(Math.random() * 6) + 1
+   })
 }
 
 function getDiceHtml(diceCount) {
