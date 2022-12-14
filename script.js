@@ -4,12 +4,6 @@ function getDiceRollArray(diceCount) {
    })
 }
 
-function getDiceHtml(diceCount) {
-   return getDiceRollArray(diceCount).map((num) => {
-      return `<div class="dice">${num}</div>`
-   }).join('')
-}
-
 const hero = {
    id: 'hero',
    name: 'Wizard',
@@ -27,15 +21,11 @@ const monster = {
 }
 
 function Character(data) {
-   this.id = data.id
-   this.name = data.name
-   this.avatar = data.avatar
-   this.health = data.health
-   this.diceCount = data.diceCount
+   Object.assign(this, data)
 
    this.getCharacterHtml = function() {
       const { id, name, avatar, health, diceCount } = this
-      const diceHtml = getDiceHtml(diceCount)
+      const diceHtml = this.getDiceHtml(diceCount)
       document.getElementById(id).innerHTML += `
       <div class="character-card">
          <h4 class="name"> ${name} </h4>
@@ -44,6 +34,12 @@ function Character(data) {
          <div class="dice-container">${diceHtml}</div>
       </div>   
 `
+   }
+
+   this.getDiceHtml = function(diceCount) {
+      return getDiceRollArray(diceCount).map((num) => {
+         return `<div class="dice">${num}</div>`
+      }).join('')
    }
 }
 
