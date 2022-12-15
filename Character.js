@@ -1,24 +1,27 @@
-import { getDiceRollArray } from './utils.js'
+import { getDicePlaceholderHtml, getDiceRollArray } from './utils.js'
 
 export default function Character(data) {
   Object.assign(this, data)
 
+  this.diceArray = getDicePlaceholderHtml(this.diceCount);
+  
   this.getCharacterHtml = function() {
-     const { id, name, avatar, health, diceCount } = this
+     const { id, name, avatar, health, diceCount, diceArray } = this
      const diceHtml = this.getDiceHtml(diceCount)
      return `
         <div class="character-card">
            <h4 class="name"> ${name} </h4>
            <img class="avatar" src="${avatar}"/>
            <p class="health">health: <b> ${health} </b></p>
-           <div class="dice-container">${diceHtml}</div>
+           <div class="dice-container">${diceArray}</div>
         </div>   
         `
   }
 
   this.getDiceHtml = function(diceCount) {
-     return getDiceRollArray(diceCount).map((num) => {
-        return `<div class="dice">${num}</div>`
-     }).join('')
-  }
+        this.currentDiceScore = getDiceRollArray(this.diceCount)
+        this.diceArray = this.currentDiceScore.map((num) => {
+          return `<div class="dice">${num}</div>`
+        }).join('')
+     }
 }
