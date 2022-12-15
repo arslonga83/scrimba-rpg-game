@@ -26,6 +26,11 @@ export default function Character(data) {
   }
 
   this.takeDamage = function(attackScoreArray) {
-    console.log(attackScoreArray)
-  }
+    const totalAttackScore = attackScoreArray.reduce((a, b) => a + b)
+    this.health -= totalAttackScore
+    if (this.health <= 0) {
+      this.health = 0;
+      this.dead = true;
+    }
+  }  
 }

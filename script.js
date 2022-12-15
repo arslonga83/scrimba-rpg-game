@@ -14,9 +14,17 @@ function render() {
 function attack() {
    wizard.takeDamage(orc.currentDiceScore)
    orc.takeDamage(wizard.currentDiceScore)
-   // wizard.getDiceHtml() //he adds these lines in the recording but i don't think they are necessary? 
-   // orc.getDiceHtml()
-  render()
+   render()
+   if (wizard.dead || orc.dead) {
+      endGame()
+   }
+}
+
+function endGame() {
+   const endMessage = !wizard.dead ? 'The Wizard Wins' 
+      : !orc.dead ? 'The Orc is Victorious' 
+      : 'No Victors - All Creatures Are Dead'
+   console.log(endMessage)
 }
 
 render();
