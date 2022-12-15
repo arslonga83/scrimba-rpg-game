@@ -12,6 +12,8 @@ function render() {
 }
 
 function attack() {
+   wizard.takeDamage(orc.currentDiceScore)
+   orc.takeDamage(wizard.currentDiceScore)
    // wizard.getDiceHtml() //he adds these lines in the recording but i don't think they are necessary? 
    // orc.getDiceHtml()
   render()

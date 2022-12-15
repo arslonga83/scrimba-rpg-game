@@ -19,9 +19,13 @@ export default function Character(data) {
   }
 
   this.getDiceHtml = function(diceCount) {
-        this.currentDiceScore = getDiceRollArray(this.diceCount)
-        this.diceArray = this.currentDiceScore.map((num) => {
-          return `<div class="dice">${num}</div>`
-        }).join('')
-     }
+    this.currentDiceScore = getDiceRollArray(this.diceCount)
+    this.diceArray = this.currentDiceScore.map((num) => {
+      return `<div class="dice">${num}</div>`
+    }).join('')
+  }
+
+  this.takeDamage = function(attackScoreArray) {
+    console.log(attackScoreArray)
+  }
 }
